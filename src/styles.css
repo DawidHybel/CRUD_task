@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-8,
+.col-4 {
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.card {
+  width: 100%;
+  overflow: hidden;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table th,
+.table td {
+  word-wrap: break-word;
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 100%;
+  }
+}

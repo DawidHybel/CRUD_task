@@ -1,144 +1,150 @@
-<div class="row">
-  <div class="col-12 text-center mb-3 pt-4">
-    <h5>Emerald Account Balance: {{ emeraldAccountFunds | currency }}</h5>
-  </div>
-  <div class="col-8">
-    <div class="card">
-      <div class="card-header bg-success">
-        <h6 class="text-center text-light">Product List</h6>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Keywords</th>
-                  <th>Bid amount</th>
-                  <th>Campaign fund</th>
-                  <th>Status</th>
-                  <th>Town</th>
-                  <th>Radius(km)</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of campaignList; index as i">
-                  <td>{{ i + 1 }}</td>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.keywords }}</td>
-                  <td>{{ item.bidAmount }}</td>
-                  <td>{{ item.campaignFund }}</td>
-                  <td>{{ item.status ? "On" : "Off" }}</td>
-                  <td>{{ item.town }}</td>
-                  <td>{{ item.radius }} km</td>
-                  <td class="text-center">
-                    <button class="btn btn-primary" (click)="onEdit(item)">
-                      Edit
-                    </button>
-                    <button
-                      class="btn btn-danger mx-2"
-                      (click)="onDelete(item.id)"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+<body>
+  <div class="row">
+    <div class="col-12 text-center mb-3 pt-4">
+      <h5>Emerald Account Balance: {{ emeraldAccountFunds | currency }}</h5>
+    </div>
+    <div class="col-8">
+      <div class="card">
+        <div class="card-header bg-success">
+          <h6 class="text-center text-light">Product List</h6>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Keywords</th>
+                    <th>Bid amount</th>
+                    <th>Campaign fund</th>
+                    <th>Status</th>
+                    <th>Town</th>
+                    <th>Radius(km)</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of campaignList; index as i">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.keywords }}</td>
+                    <td>{{ item.bidAmount }}</td>
+                    <td>{{ item.campaignFund }}</td>
+                    <td>{{ item.status ? "On" : "Off" }}</td>
+                    <td>{{ item.town }}</td>
+                    <td>{{ item.radius }} km</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary" (click)="onEdit(item)">
+                        Edit
+                      </button>
+                      <button
+                        class="btn btn-danger mx-2"
+                        (click)="onDelete(item.id)"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header bg-success text-center text-light">
-        New Product
-      </div>
-      <div class="card-body">
-        <form [formGroup]="campaignForm">
-          <div class="row">
-            <div class="col-6">
-              <label for="status">Status</label>
-              <select class="form-control" formControlName="status">
-                <option [ngValue]="true">On</option>
-                <option [ngValue]="false">Off</option>
-              </select>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header bg-success text-center text-light">
+          New Product
+        </div>
+        <div class="card-body">
+          <form [formGroup]="campaignForm">
+            <div class="row">
+              <div class="col-6">
+                <label for="status">Status</label>
+                <select class="form-control" formControlName="status">
+                  <option [ngValue]="true">On</option>
+                  <option [ngValue]="false">Off</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="">Name</label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-6">
+                <label for="">Keywords</label>
+                <textarea
+                  class="form-control"
+                  formControlName="keywords"
+                ></textarea>
+              </div>
+              <div class="col-6">
+                <label for="">Bid amount</label>
+                <input
+                  type="number"
+                  formControlName="bidAmount"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-6">
+                <label for="">Campaign fund</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="campaignFund"
+                />
+              </div>
+              <div class="col-6">
+                <label for="town">Town</label>
+                <select class="form-control" formControlName="town">
+                  <option value="Warsaw">Warsaw</option>
+                  <option value="Kraków">Kraków</option>
+                  <option value="Łódź">Łódź</option>
+                  <option value="Wrocław">Wrocław</option>
+                  <option value="Poznań">Poznań</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="">Radius(km)</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="radius"
+                />
+              </div>
             </div>
-            <div class="col-6">
-              <label for="">Name</label>
-              <input type="text" formControlName="name" class="form-control" />
+            <div class="row pt-2">
+              <div class="col-6 text-center">
+                <button class="btn btn-secondary" (click)="createForm()">
+                  Reset
+                </button>
+              </div>
+              <div class="col-6 text-center">
+                <button
+                  *ngIf="campaignForm.controls['id'].value === 1"
+                  class="btn btn-success"
+                  (click)="onSave()"
+                >
+                  Add item
+                </button>
+                <button
+                  *ngIf="campaignForm.controls['id'].value !== 1"
+                  class="btn btn-warning"
+                  (click)="onUpdate()"
+                >
+                  Update item
+                </button>
+              </div>
             </div>
-            <div class="col-6">
-              <label for="">Keywords</label>
-              <textarea
-                class="form-control"
-                formControlName="keywords"
-              ></textarea>
-            </div>
-            <div class="col-6">
-              <label for="">Bid amount</label>
-              <input
-                type="number"
-                formControlName="bidAmount"
-                class="form-control"
-              />
-            </div>
-            <div class="col-6">
-              <label for="">Campaign fund</label>
-              <input
-                type="number"
-                class="form-control"
-                formControlName="campaignFund"
-              />
-            </div>
-            <div class="col-6">
-              <label for="town">Town</label>
-              <select class="form-control" formControlName="town">
-                <option value="Warsaw">Warsaw</option>
-                <option value="Kraków">Kraków</option>
-                <option value="Łódź">Łódź</option>
-                <option value="Wrocław">Wrocław</option>
-                <option value="Poznań">Poznań</option>
-              </select>
-            </div>
-            <div class="col-6">
-              <label for="">Radius(km)</label>
-              <input
-                type="number"
-                class="form-control"
-                formControlName="radius"
-              />
-            </div>
-          </div>
-          <div class="row pt-2">
-            <div class="col-6 text-center">
-              <button class="btn btn-secondary" (click)="createForm()">
-                Reset
-              </button>
-            </div>
-            <div class="col-6 text-center">
-              <button
-                *ngIf="campaignForm.controls['id'].value === 1"
-                class="btn btn-success"
-                (click)="onSave()"
-              >
-                Add item
-              </button>
-              <button
-                *ngIf="campaignForm.controls['id'].value !== 1"
-                class="btn btn-warning"
-                (click)="onUpdate()"
-              >
-                Update item
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</body>
